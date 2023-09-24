@@ -1,0 +1,54 @@
+class Task:
+    def __init__(self, title, description, status="incomplete"):
+        self.title = title
+        self.description = description
+        self.status = status
+
+class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def delete_task(self, task):
+        self.tasks.remove(task)
+
+    def view_tasks(self):
+        print("To-do list:")
+        for task in self.tasks:
+            print(f"- {task.title} ({task.status})")
+
+    def save_tasks(self, filename):
+        with open(filename, "w") as f:
+            for task in self.tasks:
+                f.write(f"{task.title},{task.description},{task.status}\n")
+
+    def load_tasks(self, filename):
+        with open(filename, "r") as f:
+            for line in f:
+                task_title, task_description, task_status = line.strip().split(",")
+                self.add_task(Task(task_title, task_description, task_status))
+
+def main():
+    to_do_list = ToDoList()
+
+    # Add some tasks to the to-do list.
+    to_do_list.add_task(Task("Finish task", "Write a Python program to to do list."))
+    to_do_list.add_task(Task("upload it in github","opy the repository."))
+    to_do_list.add_task(Task("share with your linkedin connetions","And analyze the insights."))
+
+    # View the to-do list.
+    to_do_list.view_tasks()
+
+    # Save the to-do list to a file.
+    to_do_list.save_tasks("to_do_list.txt")
+
+    # Load the to-do list from the file.
+    to_do_list.load_tasks("to_do_list.txt")
+
+    # View the to-do list again.
+    to_do_list.view_tasks()
+
+if __name__ == "__main__":
+    main()
