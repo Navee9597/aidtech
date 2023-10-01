@@ -1,0 +1,33 @@
+import random
+
+def roll_dice(num_dice):
+ 
+  roll_results = []
+  for _ in range(num_dice):
+    roll = random.randint(1, 6)
+    roll_results.append(roll)
+  return roll_results
+
+def main():
+  
+
+  # Get the number of dice the user wants to roll.
+  num_dice = int(input("How many dice do you want to roll? "))
+
+  # Roll the dice.
+  roll_results = roll_dice(num_dice)
+
+  # Display the results to the user.
+  print("The results of the dice rolls are:")
+  for roll in roll_results:
+    print(roll)
+
+  # Ask the user if they want to roll again.
+  roll_again = input("Do you want to roll again? (0/1) ")
+
+  # If the user wants to roll again, call the main function again.
+  if roll_again == "0":
+    main()
+
+if __name__ == "__main__":
+  main()
